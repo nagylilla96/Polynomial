@@ -28,3 +28,11 @@
 2017-03-07 12:46:53,679 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/lilla/PT2017_30421_Nagy_Lilla/DemoProject/src/main/resources
 2017-03-07 12:46:53,680 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2017-03-07 12:46:53,680 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/lilla/PT2017_30421_Nagy_Lilla/DemoProject/src/test/resources
+2017-03-07 12:51:28,087 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-07 12:51:28,087 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/lilla/PT2017_30421_Nagy_Lilla/DemoProject/src/main/resources
+2017-03-07 12:51:28,088 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-07 12:51:28,089 [Worker-15] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/lilla/PT2017_30421_Nagy_Lilla/DemoProject/src/test/resources
+2017-03-07 12:51:29,169 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-07 12:51:29,169 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/lilla/PT2017_30421_Nagy_Lilla/DemoProject/src/main/resources
+2017-03-07 12:51:29,172 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-03-07 12:51:29,173 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/lilla/PT2017_30421_Nagy_Lilla/DemoProject/src/test/resources
