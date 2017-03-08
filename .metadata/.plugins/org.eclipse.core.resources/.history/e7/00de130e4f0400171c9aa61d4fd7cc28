@@ -1,0 +1,5 @@
+package polinom;
+
+public class MonomReal implements Monom{
+	
+}

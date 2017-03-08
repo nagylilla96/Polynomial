@@ -1,0 +1,159 @@
+/**
+ * MonomReal class
+ * The class is for monoms with real coefficients
+ *
+ * @author Nagy Lilla
+ * @version 08 Mar 2017
+ */
+
+package polinom;
+
+public class MonomReal extends Monom{
+	Double coeff;
+	Integer grad;	
+	
+	/**
+    *
+    * MonomReal constructor
+    *
+    * @param coeff Double variable for the coefficient of the monom 
+    * @param grad Integer variable for the grad of the monom
+    * @see MonomReal
+    */
+	protected MonomReal(Double coeff, Integer grad) {
+		this.coeff = coeff;
+		this.grad = grad;
+	}
+	
+	/**
+    *
+    * coefficient getter
+    *
+    * @return coefficient
+    * @see MonomReal
+    */
+	public Double getCoeff() {
+		return coeff;
+	}
+
+	/**
+    *
+    * coefficient setter
+    *
+    * @param coeff Double variable for the monom's coefficient
+    * @see MonomReal
+    */
+	public void setCoeff(Double coeff) {
+		this.coeff = coeff;
+	}
+
+	/**
+    *
+    * grad getter
+    *
+    * @return grad
+    * @see MonomReal
+    */
+	public Integer getGrad() {
+		return grad;
+	}
+
+	/**
+    *
+    * grad setter
+    *
+    * @param grad Integer variable for the monom's grad
+    * @see MonomReal
+    */
+	public void setGrad(Integer grad) {
+		this.grad = grad;
+	}
+	
+	/**
+    *
+    * The method adds two monom's coefficients, and returns the resulting monom
+    *
+    * @param m Monom
+    * @return the result MonomReal
+    * @see MonomReal
+    */
+	@Override
+	protected Monom add(Monom m) {
+		MonomReal mr = (MonomReal) m;
+		mr.setCoeff(this.coeff + mr.coeff);
+		return mr;
+	}
+
+	/**
+    *
+    * The method subtracts two monom's coefficients, and returns the resulting monom
+    *
+    * @param m Monom
+    * @return the result MonomReal
+    * @see MonomReal
+    */
+	@Override
+	protected Monom subtract(Monom m) {
+		MonomReal mr = (MonomReal) m;
+		mr.setCoeff(this.coeff - mr.coeff);
+		return mr;
+	}
+	
+	/**
+    *
+    * The method multiplies two monom's coefficients, and returns the resulting monom
+    *
+    * @param m Monom
+    * @return the result MonomReal
+    * @see MonomReal
+    */
+	@Override
+	protected Monom multiply(Monom m) {
+		MonomReal mr = (MonomReal) m;
+		mr.setCoeff(this.coeff * mr.coeff);
+		return mr;
+	}
+	
+	/**
+    *
+    * The method divides two monom's coefficients, and returns the resulting monom
+    *
+    * @param m Monom
+    * @return the result MonomReal
+    * @see MonomReal
+    */
+	@Override
+	protected Monom divide(Monom m) {
+		MonomReal mr = (MonomReal) m;
+		mr.setCoeff((Double) (this.coeff / mr.coeff));
+		return mr;
+	}
+	
+	/**
+    *
+    * The method differentiates the current monom and returns it
+    *
+    * @return the result MonomReal
+    * @see MonomReal
+    */
+	@Override
+	protected Monom differentiate() {
+		this.coeff *= this.grad;
+		this.grad --;
+		return this;
+	}
+	
+	/**
+    *
+    * The method integrates the current monom and returns it
+    *
+    * @return the result MonomReal
+    * @see MonomReal
+    */
+	@Override
+	protected Monom integrate() {
+		this.coeff /= (Double) (++ this.grad).doubleValue();
+		this.grad ++;
+		return this;
+	}
+}
