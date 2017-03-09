@@ -1,0 +1,34 @@
+package polinom;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class PolinomTest {
+
+	@Test
+	public void testPolinom() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddMonom() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetMonoms() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetMonoms() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testAddPolinom() {
+		fail("Not yet implemented");
+	}
+
+}

@@ -1,0 +1,17 @@
+/**
+ * Polinom class
+ * The class is for polinoms 
+ *
+ * @author Nagy Lilla
+ * @version 09 Mar 2017
+ */
+
+package polinom;
+
+import java.util.*;
+
+public class Polinom {
+	List<Monom> monoms = new LinkedList<>();
+	
+	
+}

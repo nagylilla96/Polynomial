@@ -1,6 +1,14 @@
+/**
+ * MonomInt class
+ * The class is for monoms with integer coefficients
+ *
+ * @author Nagy Lilla
+ * @version 09 Mar 2017
+ */
+
 package polinom;
 
-public class MonomInt extends Monom{
+public class MonomInt extends Monom implements Comparable{
 	Integer coeff;
 	Integer grad;
 	
@@ -24,8 +32,8 @@ public class MonomInt extends Monom{
     * @return coefficient
     * @see MonomInt
     */
-	public Integer getCoeff() {
-		return coeff;
+	public Object getCoeff() {
+		return (Integer) coeff;
 	}
 
 	/**
@@ -35,8 +43,8 @@ public class MonomInt extends Monom{
     * @param coeff Integer variable for the monom's coefficient
     * @see MonomInt
     */
-	public void setCoeff(Integer coeff) {
-		this.coeff = coeff;
+	public void setCoeff(Object coeff) {
+		this.coeff = (Integer) coeff;
 	}
 
 	/**
@@ -46,8 +54,8 @@ public class MonomInt extends Monom{
     * @return grad
     * @see MonomInt
     */
-	public Integer getGrad() {
-		return grad;
+	public Object getGrad() {
+		return (Integer) grad;
 	}
 
 	/**
@@ -57,8 +65,8 @@ public class MonomInt extends Monom{
     * @param grad Integer variable for the monom's grad
     * @see MonomInt
     */
-	public void setGrad(Integer grad) {
-		this.grad = grad;
+	public void setGrad(Object grad) {
+		this.grad = (Integer) grad;
 	}
 	
 	/**
@@ -146,5 +154,19 @@ public class MonomInt extends Monom{
 	protected Monom integrate() {
 		MonomReal mr = new MonomReal(this.coeff / (Double) (++ this.grad).doubleValue(), ++ this.grad);
 		return mr;
+	}
+	
+	/**
+    *
+    * The method compares the monoms based on their grads
+    *
+    * @return the result in int
+    * @see MonomInt
+    */
+	@Override
+	public int compareTo(Object o) {
+		if (this.grad.compareTo((Integer) ((MonomInt) o).getGrad()) > 0) return -1;
+		if (this.grad.equals(((MonomInt) o).getGrad())) return 0;
+		return 1;
 	}
 }

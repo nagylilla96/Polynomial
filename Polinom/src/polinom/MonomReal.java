@@ -3,12 +3,12 @@
  * The class is for monoms with real coefficients
  *
  * @author Nagy Lilla
- * @version 08 Mar 2017
+ * @version 09 Mar 2017
  */
 
 package polinom;
 
-public class MonomReal extends Monom{
+public class MonomReal extends Monom implements Comparable{
 	Double coeff;
 	Integer grad;	
 	
@@ -32,8 +32,8 @@ public class MonomReal extends Monom{
     * @return coefficient
     * @see MonomReal
     */
-	public Double getCoeff() {
-		return coeff;
+	public Object getCoeff() {
+		return (Double) coeff;
 	}
 
 	/**
@@ -43,8 +43,8 @@ public class MonomReal extends Monom{
     * @param coeff Double variable for the monom's coefficient
     * @see MonomReal
     */
-	public void setCoeff(Double coeff) {
-		this.coeff = coeff;
+	public void setCoeff(Object coeff) {
+		this.coeff = (Double) coeff;
 	}
 
 	/**
@@ -54,8 +54,8 @@ public class MonomReal extends Monom{
     * @return grad
     * @see MonomReal
     */
-	public Integer getGrad() {
-		return grad;
+	public Object getGrad() {
+		return (Integer) grad;
 	}
 
 	/**
@@ -65,8 +65,8 @@ public class MonomReal extends Monom{
     * @param grad Integer variable for the monom's grad
     * @see MonomReal
     */
-	public void setGrad(Integer grad) {
-		this.grad = grad;
+	public void setGrad(Object grad) {
+		this.grad = (Integer) grad;
 	}
 	
 	/**
@@ -155,5 +155,19 @@ public class MonomReal extends Monom{
 		this.coeff /= (Double) (++ this.grad).doubleValue();
 		this.grad ++;
 		return this;
+	}
+
+	/**
+    *
+    * The method compares the monoms based on their grads
+    *
+    * @return the result in int
+    * @see MonomReal
+    */
+	@Override
+	public int compareTo(Object o) {
+		if (this.grad.compareTo((Integer) ((MonomReal) o).getGrad()) > 0) return -1;
+		if (this.grad.equals(((MonomReal) o).getGrad())) return 0;
+		return 1;
 	}
 }
