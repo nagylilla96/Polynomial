@@ -1,0 +1,24 @@
+package polinom;	
+
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class PolinomTestRunner {
+
+	public static void main(String[] args){
+		Monom m1 = new MonomInt(2, 3);
+		Monom m2 = new MonomInt(2, 3);
+		Monom result1 = m1.add(m2);
+		System.out.println("result: " + result1.getCoeff() + ", " + result1.getGrad());
+		Monom m3 = new MonomReal(2.4, 1);
+		Monom m4 = new MonomInt(3, 1);
+		Monom result2 = m3.add(m4);
+		System.out.println("result: " + result12.getCoeff() + ", " + result2.getGrad());
+		Result result = JUnitCore.runClasses(PolinomTest.class);
+	    for (Failure failure : result.getFailures()) {
+	      System.out.println(failure.toString());
+	    }
+	    System.out.println(result.wasSuccessful());
+	}
+}

@@ -1,4 +1,12 @@
-package polinom;
+/**
+ * PolinomTestRunneer class
+ * The PolinomTest runner class
+ *
+ * @author Nagy Lilla
+ * @version 10 Mar 2017
+ */
+
+package polinom;	
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
