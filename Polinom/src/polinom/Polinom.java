@@ -3,7 +3,7 @@
  * The class is for polinoms 
  *
  * @author Nagy Lilla
- * @version 09 Mar 2017
+ * @version 10 Mar 2017
  */
 
 package polinom;

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;polinom.PolinomTest&apos; to &apos;MonomTest&apos;&#x0A;- Original project: &apos;Polinom&apos;&#x0A;- Original element: &apos;polinom.PolinomTest&apos;&#x0A;- Renamed element: &apos;polinom.MonomTest&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;PolinomTest&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;polinom{PolinomTest.java[PolinomTest" matchStrategy="1" name="MonomTest" qualified="false" references="true" similarDeclarations="false" stamp="1489134121702" textual="false" version="1.0"/>
+</session>

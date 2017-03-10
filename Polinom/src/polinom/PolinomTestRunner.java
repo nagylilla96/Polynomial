@@ -15,7 +15,7 @@ import org.junit.runner.notification.Failure;
 public class PolinomTestRunner {
 
 	public static void main(String[] args){
-		Result result = JUnitCore.runClasses(PolinomTest.class);
+		Result result = JUnitCore.runClasses(MonomTest.class);
 	    for (Failure failure : result.getFailures()) {
 	      System.out.println(failure.toString());
 	    }

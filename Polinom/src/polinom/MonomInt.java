@@ -3,7 +3,7 @@
  * The class is for monoms with integer coefficients
  *
  * @author Nagy Lilla
- * @version 09 Mar 2017
+ * @version 10 Mar 2017
  */
 
 package polinom;
@@ -124,8 +124,7 @@ public class MonomInt extends Monom implements Comparable{
     */
 	@Override
 	protected Monom divide(Monom m) {
-		MonomReal mr = (MonomReal) m;
-		mr.setCoeff((Double) (this.coeff / mr.coeff));
+		Monom mr = new MonomReal(this.coeff / ((Number) (m.getCoeff())).doubleValue(), this.grad);
 		return mr;
 	}
 	
@@ -139,7 +138,7 @@ public class MonomInt extends Monom implements Comparable{
 	@Override
 	protected Monom differentiate() {
 		this.coeff *= this.grad;
-		this.grad --;
+		if (this.grad != 0) this.grad --;
 		return this;
 	}
 	
@@ -152,7 +151,8 @@ public class MonomInt extends Monom implements Comparable{
     */
 	@Override
 	protected Monom integrate() {
-		MonomReal mr = new MonomReal(this.coeff / (Double) (++ this.grad).doubleValue(), ++ this.grad);
+		++this.grad;
+		MonomReal mr = new MonomReal(this.coeff / (Double) (this.grad).doubleValue(), this.grad);
 		return mr;
 	}
 	
