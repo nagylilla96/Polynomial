@@ -59,12 +59,6 @@ public class Polinom{
 		this.monoms = monoms;
 	}
 	
-	/**
-	 *
-	 * Inverts the coefficients of all monoms from this class
-	 *
-	 * @see Polinom
-	 */
 	public void invertMonoms() {
 		for (Monom i: this.monoms) {
 			i.setCoeff(-(Integer)i.getCoeff());

@@ -50,13 +50,13 @@ public class PolinomTest {
 		polinom2.addMonom(new MonomInt(3, 1));
 		polinom2.addMonom(new MonomInt(2, 0));
 		Polinom result = polinom1.subtractPolinom(polinom2);
-		assertEquals("0", -3, result.getMonoms().get(0).getCoeff());
+		assertEquals("0", 3, result.getMonoms().get(0).getCoeff());
 		assertEquals("0", 3, result.getMonoms().get(0).getGrad());
 		assertEquals("1", 1, result.getMonoms().get(1).getCoeff());
 		assertEquals("1", 2, result.getMonoms().get(1).getGrad());
-		assertEquals("2", -1, result.getMonoms().get(2).getCoeff());
+		assertEquals("2", 5, result.getMonoms().get(2).getCoeff());
 		assertEquals("2", 1, result.getMonoms().get(2).getGrad());
-		assertEquals("3", -1, result.getMonoms().get(3).getCoeff());
+		assertEquals("3", 3, result.getMonoms().get(3).getCoeff());
 		assertEquals("3", 0, result.getMonoms().get(3).getGrad());
 		
 	}
