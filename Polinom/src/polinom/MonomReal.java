@@ -107,7 +107,7 @@ public class MonomReal extends Monom implements Comparable{
     */
 	@Override
 	protected Monom multiply(Monom m) {
-		MonomReal mr = new MonomReal(this.coeff * ((Number) (m.getCoeff())).doubleValue(), this.grad);
+		MonomReal mr = new MonomReal(this.coeff * ((Number) (m.getCoeff())).doubleValue(), this.grad + ((Number) (m.getGrad())).intValue());
 		return mr;
 	}
 	
@@ -121,7 +121,7 @@ public class MonomReal extends Monom implements Comparable{
     */
 	@Override
 	protected Monom divide(Monom m) {
-		MonomReal mr = new MonomReal(this.coeff / ((Number) (m.getCoeff())).doubleValue(), this.grad);
+		MonomReal mr = new MonomReal(this.coeff / ((Number) (m.getCoeff())).doubleValue(), this.grad - ((Number) (m.getCoeff())).intValue());
 		return mr;
 	}
 	

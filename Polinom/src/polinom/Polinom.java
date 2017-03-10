@@ -19,7 +19,7 @@ public class Polinom{
 	 *
 	 * @see Polinom
 	 */
-	protected Polinom() {
+	public Polinom() {
 		super();
 	}
 
@@ -58,14 +58,14 @@ public class Polinom{
 	public void setMonoms(List<Monom> monoms) {
 		this.monoms = monoms;
 	}
-	
+
 	/**
 	 *
 	 * Inverts the coefficients of all monoms from this class
 	 *
 	 * @see Polinom
 	 */
-	public void invertMonoms() {
+	protected void invertMonoms() {
 		for (Monom i: this.monoms) {
 			i.setCoeff(-(Integer)i.getCoeff());
 		}
@@ -90,6 +90,9 @@ public class Polinom{
 		List<Monom> monomList;
 		Iterator<Monom> j;
 		Monom mon;
+		if (this.monoms.isEmpty()) {
+			return p;
+		}
 		if (((Integer) this.monoms.get(0).getGrad()).compareTo((Integer) p.getMonoms().get(0).getGrad()) > 0) {
 			monomList = this.monoms;
 			j = p.getMonoms().iterator();
@@ -109,7 +112,7 @@ public class Polinom{
 		for (Monom i: monomList) {
 			while (((Integer) mon.getGrad()).compareTo((Integer) i.getGrad()) > 0 && j.hasNext()) {
 				res.addMonom(mon);
-				mon = j.next();
+				mon = j.next();	
 			}
 			if (i.getGrad().equals(mon.getGrad())) {
 				res.addMonom(i.add(mon));
@@ -122,9 +125,13 @@ public class Polinom{
 
 			}
 		}
+		res.addMonom(mon);
+		while (j.hasNext()) {
+			res.addMonom(j.next());
+		}
 		return res;
 	}
-	
+
 	/**
 	 *
 	 * Subtracts two polynomials by inverting the polinom to be subtracted
@@ -177,6 +184,29 @@ public class Polinom{
 			}
 		}
 		return res;
+	}
+
+	/**
+	 *
+	 * Multiplies two polynomials 
+	 * In a double loop, we multiply each element from one polynomial with each element from the other, and add them
+	 * The returned polynomial is the result of type Polynom
+	 *
+	 * @param p Polinom
+	 * @return Polinom
+	 * @see Polinom
+	 */
+	protected Polinom multiplyPolinom(Polinom p) {
+		Polinom rez = new Polinom();
+		for (Monom i: this.monoms) {
+			Polinom temp = new Polinom();
+			for (Monom j: p.getMonoms()) {				
+				Monom m = i.multiply(j);
+				temp.addMonom(m);	
+			}
+			rez = rez.addPolinom(temp);
+		}
+		return rez;
 	}
 
 }

@@ -1,0 +1,38 @@
+/**
+ * PolinomTestRunneer class
+ * The PolinomTest runner class
+ *
+ * @author Nagy Lilla
+ * @version 10 Mar 2017
+ */
+
+package polinom;	
+
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class PolinomTestRunner {
+
+	public static void main(String[] args){
+		Polinom polinom1 = new Polinom();
+		polinom1.addMonom(new MonomInt(1, 2));
+		polinom1.addMonom(new MonomInt(2, 1));
+		polinom1.addMonom(new MonomInt(1, 0));
+		Polinom polinom2 = new Polinom();
+		polinom2.addMonom(new MonomInt(3, 3));
+		polinom2.addMonom(new MonomInt(3, 1));
+		polinom2.addMonom(new MonomInt(2, 0));
+		Polinom result = polinom1.multiplyPolinom(polinom2);
+		Result resultMonom = JUnitCore.runClasses(MonomTest.class);
+	    for (Failure failure : resultMonom.getFailures()) {
+	      System.out.println(failure.toString());
+	    }
+	    System.out.println(resultMonom.wasSuccessful());
+	    Result resultPolinom = JUnitCore.runClasses(PolinomTest.class);
+	    for (Failure failure : resultPolinom.getFailures()) {
+	      System.out.println(failure.toString());
+	    }
+	    System.out.println(resultPolinom.wasSuccessful());
+	}
+}

@@ -134,7 +134,7 @@ public class MonomTest {
 		Monom m2 = new MonomInt(3, 2);
 		Monom result1 = m1.multiply(m2);
 		assertEquals("Result should be coeff = 15", 15, result1.getCoeff());
-		assertEquals("Result should be grad = 2", 2, result1.getGrad());
+		assertEquals("Result should be grad = 4", 4, result1.getGrad());
 	}
 	
 	/**
@@ -149,7 +149,7 @@ public class MonomTest {
 		Monom m2 = new MonomInt(1, 2);
 		Monom result1 = m1.multiply(m2);
 		assertEquals("Result should be coeff = 7.2", 7.2, result1.getCoeff());
-		assertEquals("Result should be grad = 2", 2, result1.getGrad());
+		assertEquals("Result should be grad = 4", 4, result1.getGrad());
 	}
 	
 	/**
@@ -164,7 +164,7 @@ public class MonomTest {
 		Monom m2 = new MonomReal(1.5, 2);
 		Monom result1 = m1.multiply(m2);
 		assertEquals("Result should be coeff = 2.25", 2.25, result1.getCoeff());
-		assertEquals("Result should be grad = 2", 2, result1.getGrad());
+		assertEquals("Result should be grad = 4", 4, result1.getGrad());
 	}
 	
 	/**
@@ -179,7 +179,7 @@ public class MonomTest {
 		Monom m2 = new MonomInt(2, 2);
 		Monom result1 = m1.divide(m2);
 		assertEquals("Result should be coeff = 3.0", 3.0, result1.getCoeff());
-		assertEquals("Result should be grad = 2", 2, result1.getGrad());
+		assertEquals("Result should be grad = 0", 0, result1.getGrad());
 	}
 	
 	/**
@@ -194,7 +194,7 @@ public class MonomTest {
 		Monom m2 = new MonomInt(2, 2);
 		Monom result1 = m1.divide(m2);
 		assertEquals("Result should be coeff = 2.5", 2.5, result1.getCoeff());
-		assertEquals("Result should be grad = 2", 2, result1.getGrad());
+		assertEquals("Result should be grad = 0", 0, result1.getGrad());
 	}
 	
 	/**
