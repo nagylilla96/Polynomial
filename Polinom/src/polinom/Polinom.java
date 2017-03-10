@@ -10,81 +10,107 @@ package polinom;
 
 import java.util.*;
 
-public class Polinom {
-	Set<Monom> monoms = new TreeSet<>();
+public class Polinom{
+	List<Monom> monoms = new LinkedList<>();
 
 	/**
-    *
-    * Polinom constructor which calls super()
-    *
-    * @see Polinom
-    */
+	 *
+	 * Polinom constructor which calls super()
+	 *
+	 * @see Polinom
+	 */
 	protected Polinom() {
 		super();
 	}
-	
+
 	/**
-    *
-    * Adds a new monom to the set of monoms from the Polinom
-    *
-    * @param m Monom
-    * @return Polinom
-    * @see Polinom
-    */
+	 *
+	 * Adds a new monom to the list of monoms from the Polinom and sorts it in descending order
+	 *
+	 * @param m Monom
+	 * @return Polinom
+	 * @see Polinom
+	 */
 	protected Polinom addMonom(Monom m) {
 		this.monoms.add(m);
+		this.monoms.sort((s1, s2) -> -Integer.compare((int) s1.getGrad(), (int) s2.getGrad()));
 		return this;
 	}
 
 	/**
-    *
-    * Gets the set of monoms from the Polinom
-    *
-    * @return Set<Monom> the set of monoms
-    * @see Polinom
-    */
-	public Set<Monom> getMonoms() {
+	 *
+	 * Gets the set of monoms from the Polinom
+	 *
+	 * @return Set<Monom> the set of monoms
+	 * @see Polinom
+	 */
+	public List<Monom> getMonoms() {
 		return this.monoms;
 	}
 
 	/**
-    *
-    * Sets the set of monoms of the Polinom
-    *
-    * @param monoms of Set<Monom> type
-    * @see Polinom
-    */
-	public void setMonoms(Set<Monom> monoms) {
+	 *
+	 * Sets the set of monoms of the Polinom
+	 *
+	 * @param monoms of Set<Monom> type
+	 * @see Polinom
+	 */
+	public void setMonoms(List<Monom> monoms) {
 		this.monoms = monoms;
 	}
 
-	
+
 	/**
-    *
-    * Adds two polynomials, and finds the monoms with the same grad
-    *
-    * @param p Polinom
-    * @return Polinom
-    * @see Polinom
-    */
+	 *
+	 * Adds two polynomials
+	 * First, it finds the polynomial with the highest grad (ex: p1) and it uses that for the loop
+	 * Then, if the next element of p1 and p2 does not respect this order, it adds p2 to the 
+	 * result's list of monoms
+	 * If the monoms have equal grads, it adds them and then adds the result to res's list
+	 * Else, it adds p1's monom to res's list of monoms
+	 *
+	 * @param p Polinom
+	 * @return Polinom
+	 * @see Polinom
+	 */
 	protected Polinom addPolinom(Polinom p) {
-		Monom m2;
-		Iterator<Monom> i= p.getMonoms().iterator();
-		if (i.hasNext()){
-			m2 = i.next();
+		Polinom res = new Polinom();
+		List<Monom> monomList;
+		Iterator<Monom> j;
+		Monom mon;
+		if (((Integer) this.monoms.get(0).getGrad()).compareTo((Integer) p.getMonoms().get(0).getGrad()) > 0) {
+			monomList = this.monoms;
+			j = p.getMonoms().iterator();
+			if (j.hasNext()) {
+				mon = j.next();
+			}
+			else return this;
 		}
 		else {
-			return this;
+			monomList = p.getMonoms();
+			j = this.monoms.iterator();
+			if (j.hasNext()) {
+				mon = j.next();
+			}
+			else return p;
 		}
-		for(Monom m1 : monoms) {
-			if (m1.getGrad().equals(m2.getGrad())) {
-				m1.add(m2);
-				if (i.hasNext()) {
-					m2 = i.next();
+		for (Monom i: monomList) {
+			while (((Integer) mon.getGrad()).compareTo((Integer) i.getGrad()) > 0 && j.hasNext()) {
+				res.addMonom(mon);
+				mon = j.next();
+			}
+			if (i.getGrad().equals(mon.getGrad())) {
+				res.addMonom(i.add(mon));
+				if (j.hasNext()) {
+					mon = j.next();
 				}
 			}
+			else {
+				res.addMonom(i);
+
+			}
 		}
-		return this;
+		return res;
 	}
 
 }

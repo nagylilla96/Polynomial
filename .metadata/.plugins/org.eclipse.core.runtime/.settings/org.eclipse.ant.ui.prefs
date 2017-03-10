@@ -1,5 +1,4 @@
 eclipse.preferences.version=1
-overriddenByCSS=,org.eclipse.ant.ui.commentsColor,org.eclipse.ant.ui.constantStringsColor,org.eclipse.ant.ui.debugColor,org.eclipse.ant.ui.dtdColor,org.eclipse.ant.ui.errorColor,org.eclipse.ant.ui.informationColor,org.eclipse.ant.ui.processingInstructionsColor,org.eclipse.ant.ui.tagsColor,org.eclipse.ant.ui.textColor,org.eclipse.ant.ui.verboseColor,org.eclipse.ant.ui.warningColor,
 predarkestdark.org.eclipse.ant.ui.commentsColor=199,221,12
 predarkestdark.org.eclipse.ant.ui.constantStringsColor=255,198,0
 predarkestdark.org.eclipse.ant.ui.debugColor=238,238,236
