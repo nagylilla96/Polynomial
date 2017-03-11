@@ -3,7 +3,7 @@
  * The class is for monoms with integer coefficients
  *
  * @author Nagy Lilla
- * @version 10 Mar 2017
+ * @version 11 Mar 2017
  */
 
 package polinom;
@@ -94,8 +94,13 @@ public class MonomInt extends Monom implements Comparable{
     */
 	@Override
 	protected Monom subtract(Monom m) {
+		if (m.getClass().equals(MonomReal.class)) {
+			MonomReal mr = (MonomReal) m;
+			mr.setCoeff(this.coeff - (Double) mr.getCoeff());
+			return mr;
+		}
 		MonomInt mr = (MonomInt) m;
-		mr.setCoeff(this.coeff - mr.coeff);
+		mr.setCoeff(this.coeff - (Integer) mr.getCoeff());
 		return mr;
 	}
 	
@@ -123,7 +128,7 @@ public class MonomInt extends Monom implements Comparable{
     */
 	@Override
 	protected Monom divide(Monom m) {
-		Monom mr = new MonomReal(this.coeff / ((Number) (m.getCoeff())).doubleValue(), this.grad - ((Number) (m.getCoeff())).intValue());
+		Monom mr = new MonomReal(this.coeff / ((Number) (m.getCoeff())).doubleValue(), this.grad - ((Number) (m.getGrad())).intValue());
 		return mr;
 	}
 	
@@ -167,5 +172,17 @@ public class MonomInt extends Monom implements Comparable{
 		if (this.grad.compareTo((Integer) ((MonomInt) o).getGrad()) > 0) return -1;
 		if (this.grad.equals(((MonomInt) o).getGrad())) return 0;
 		return 1;
+	}
+
+	/**
+    *
+    * The method inverts the coefficient of the monom
+    *
+    * @see MonomReal
+    */
+	@Override
+	public void invertCoeff() {
+		this.coeff = - this.coeff;
+		
 	}
 }

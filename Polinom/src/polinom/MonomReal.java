@@ -3,7 +3,7 @@
  * The class is for monoms with real coefficients
  *
  * @author Nagy Lilla
- * @version 10 Mar 2017
+ * @version 11 Mar 2017
  */
 
 package polinom;
@@ -121,7 +121,7 @@ public class MonomReal extends Monom implements Comparable{
     */
 	@Override
 	protected Monom divide(Monom m) {
-		MonomReal mr = new MonomReal(this.coeff / ((Number) (m.getCoeff())).doubleValue(), this.grad - ((Number) (m.getCoeff())).intValue());
+		MonomReal mr = new MonomReal(this.coeff / ((Number) (m.getCoeff())).doubleValue(), this.grad - ((Number) (m.getGrad())).intValue());
 		return mr;
 	}
 	
@@ -165,5 +165,17 @@ public class MonomReal extends Monom implements Comparable{
 		if (this.grad.compareTo((Integer) ((MonomReal) o).getGrad()) > 0) return -1;
 		if (this.grad.equals(((MonomReal) o).getGrad())) return 0;
 		return 1;
+	}
+
+	/**
+    *
+    * The method inverts the coefficient of the monom
+    *
+    * @see MonomReal
+    */
+	@Override
+	public void invertCoeff() {
+		this.coeff = -this.coeff;
+		
 	}
 }

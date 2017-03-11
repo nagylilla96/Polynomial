@@ -3,7 +3,7 @@
  * This is an abstract class with abstract methods for monoms
  *
  * @author Nagy Lilla
- * @version 09 Mar 2017
+ * @version 11 Mar 2017
  */
 
 package polinom;
@@ -20,5 +20,6 @@ abstract class Monom {
 	public abstract void setGrad(Object grad);
 	public abstract Object getCoeff();
 	public abstract void setCoeff(Object coeff);
+	public abstract void invertCoeff();
 	public abstract int compareTo(Object o);
 }

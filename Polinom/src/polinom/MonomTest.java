@@ -1,9 +1,9 @@
 /**
  * PolinomTest class
- * The Polinom tester class
+ * The Monom tester class
  *
  * @author Nagy Lilla
- * @version 10 Mar 2017
+ * @version 12 Mar 2017
  */
 
 package polinom;
@@ -104,6 +104,21 @@ public class MonomTest {
 		Monom m2 = new MonomInt(3, 2);
 		Monom result1 = m1.subtract(m2);
 		assertEquals("Result should be coeff = 4.2", 4.2, result1.getCoeff());
+		assertEquals("Result should be grad = 2", 2, result1.getGrad());
+	}
+	
+	/**
+    *
+    * Tests the case of subtracting two monoms, one with integer and one with real coefficient
+    *
+    * @see MonomTest
+    */
+	@Test
+	public void testSubMonomIntReal() {
+		Monom m1 = new MonomInt(7, 2);
+		Monom m2 = new MonomReal(3.2, 2);
+		Monom result1 = m1.subtract(m2);
+		assertEquals("Result should be coeff = 3.8", 3.8, result1.getCoeff());
 		assertEquals("Result should be grad = 2", 2, result1.getGrad());
 	}
 	

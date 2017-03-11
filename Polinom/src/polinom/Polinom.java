@@ -3,7 +3,7 @@
  * The class is for polinoms 
  *
  * @author Nagy Lilla
- * @version 10 Mar 2017
+ * @version 12 Mar 2017
  */
 
 package polinom;
@@ -32,6 +32,16 @@ public class Polinom{
 	 * @see Polinom
 	 */
 	protected Polinom addMonom(Monom m) {
+		if (m.getClass().equals(MonomInt.class)) {
+			if ((int)m.getCoeff() == 0) {
+				return this;
+			}
+		}
+		if (m.getClass().equals(MonomReal.class)) {
+			if ((double)m.getCoeff() == 0.0) {
+				return this;
+			}
+		}
 		this.monoms.add(m);
 		this.monoms.sort((s1, s2) -> -Integer.compare((int) s1.getGrad(), (int) s2.getGrad()));
 		return this;
@@ -67,8 +77,38 @@ public class Polinom{
 	 */
 	protected void invertMonoms() {
 		for (Monom i: this.monoms) {
-			i.setCoeff(-(Integer)i.getCoeff());
+			i.invertCoeff();
 		}
+	}
+	
+	/**
+	 *
+	 * Copies the elements of one polinom into another polinom
+	 *
+	 * @param p of type Polinom
+	 * @return Polinom
+	 * @see Polinom
+	 */
+	protected Polinom copyPolinom(Polinom p) {
+		Polinom newPolinom = new Polinom();
+		for (Monom i: p.getMonoms()) {
+			newPolinom.addMonom(i);
+		}
+		return newPolinom;
+	}
+	
+	/**
+	 *
+	 * Prints the polynomial
+	 *
+	 * @param p of type Polinom
+	 * @see Polinom
+	 */
+	protected void printPolinom(Polinom p) {
+		for (Monom i: p.getMonoms()) {
+			System.out.print(i.getCoeff() + "X^" + i.getGrad() + " ");
+		}
+		System.out.println();
 	}
 
 
@@ -109,6 +149,7 @@ public class Polinom{
 			}
 			else return p;
 		}
+		boolean add = true;
 		for (Monom i: monomList) {
 			while (((Integer) mon.getGrad()).compareTo((Integer) i.getGrad()) > 0 && j.hasNext()) {
 				res.addMonom(mon);
@@ -119,13 +160,19 @@ public class Polinom{
 				if (j.hasNext()) {
 					mon = j.next();
 				}
+				else {
+					add = false;
+				}
 			}
 			else {
 				res.addMonom(i);
 
 			}
 		}
-		res.addMonom(mon);
+		if (add) {
+			res.addMonom(mon);
+		}
+		
 		while (j.hasNext()) {
 			res.addMonom(j.next());
 		}
@@ -135,62 +182,22 @@ public class Polinom{
 	/**
 	 *
 	 * Subtracts two polynomials by inverting the polinom to be subtracted
-	 * First, it finds the polynomial with the highest grad (ex: p1) and it uses that for the loop
-	 * Then, if the next element of p1 and p2 does not respect this order, it adds p2 to the 
-	 * result's list of monoms
-	 * If the monoms have equal grads, it adds them and then adds the result to res's list
-	 * Else, it adds p1's monom to res's list of monoms
+	 * It inverts the polynomial to be subtracted, and then adds it to this 
 	 *
 	 * @param p Polinom
 	 * @return Polinom
 	 * @see Polinom
 	 */
 	protected Polinom subtractPolinom(Polinom p) {
-		Polinom res = new Polinom();
 		p.invertMonoms();
-		List<Monom> monomList;
-		Iterator<Monom> j;
-		Monom mon;
-		if (((Integer) this.monoms.get(0).getGrad()).compareTo((Integer) p.getMonoms().get(0).getGrad()) > 0) {
-			monomList = this.monoms;
-			j = p.getMonoms().iterator();
-			if (j.hasNext()) {
-				mon = j.next();
-			}
-			else return this;
-		}
-		else {
-			monomList = p.getMonoms();
-			j = this.monoms.iterator();
-			if (j.hasNext()) {
-				mon = j.next();
-			}
-			else return p;
-		}
-		for (Monom i: monomList) {
-			while (((Integer) mon.getGrad()).compareTo((Integer) i.getGrad()) > 0 && j.hasNext()) {
-				res.addMonom(mon);
-				mon = j.next();
-			}
-			if (i.getGrad().equals(mon.getGrad())) {
-				res.addMonom(i.add(mon));
-				if (j.hasNext()) {
-					mon = j.next();
-				}
-			}
-			else {
-				res.addMonom(i);
-
-			}
-		}
-		return res;
+		return this.addPolinom(p);
 	}
 
 	/**
 	 *
 	 * Multiplies two polynomials 
 	 * In a double loop, we multiply each element from one polynomial with each element from the other, and add them
-	 * The returned polynomial is the result of type Polynom
+	 * The returned polynomial is the result of type Polinom
 	 *
 	 * @param p Polinom
 	 * @return Polinom
@@ -207,6 +214,37 @@ public class Polinom{
 			rez = rez.addPolinom(temp);
 		}
 		return rez;
+	}
+	
+	/**
+	 *
+	 * Divides two polynomials 
+	 * We use the algorithm of polynomial division to get the quotient and the rest
+	 * The return value is a linked list of polynomials with the quotient and the rest
+	 *
+	 * @param p Polinom
+	 * @return List<Polinom> a linked list with the quotient and the rest
+	 * @see Polinom
+	 */
+	protected List<Polinom> dividePolinom(Polinom p) {
+		if (p.getMonoms().isEmpty()) {
+			System.out.println("Division by zero!");
+			return null;
+		}
+		Polinom quotient = new Polinom();
+		Polinom rest = copyPolinom(this);
+		while (!rest.getMonoms().isEmpty() && ((Integer) rest.getMonoms().get(0).getGrad()).compareTo((Integer) p.getMonoms().get(0).getGrad()) >= 0) {
+			Monom temp = rest.getMonoms().get(0).divide(p.getMonoms().get(0));			
+			quotient.addMonom(temp);
+			Polinom tempPol = new Polinom();
+			tempPol.addMonom(temp);						
+			Polinom test = tempPol.multiplyPolinom(p);
+			rest = rest.subtractPolinom(test);
+		}
+		List<Polinom> polinomList = new LinkedList<>();
+		polinomList.add(quotient);
+		polinomList.add(rest);
+		return polinomList;
 	}
 
 }
