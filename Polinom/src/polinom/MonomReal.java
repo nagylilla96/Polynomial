@@ -3,7 +3,7 @@
  * The class is for monoms with real coefficients
  *
  * @author Nagy Lilla
- * @version 11 Mar 2017
+ * @version 12 Mar 2017
  */
 
 package polinom;
@@ -149,8 +149,8 @@ public class MonomReal extends Monom implements Comparable{
 	@Override
 	protected Monom integrate() {
 		++this.grad;
-		this.coeff /= (Double) (this.grad).doubleValue();
-		return this;
+		MonomReal mr = new MonomReal(this.coeff / (Double) (this.grad).doubleValue(), this.grad);
+		return mr;
 	}
 
 	/**

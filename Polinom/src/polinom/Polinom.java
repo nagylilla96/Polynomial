@@ -246,5 +246,34 @@ public class Polinom{
 		polinomList.add(rest);
 		return polinomList;
 	}
+	
+	/**
+	 *
+	 * Differentiates this polynomial
+	 *
+	 * @return p Polinom
+	 * @see Polinom
+	 */
+	protected Polinom differentiatePolinom() {
+		for (Monom i: this.monoms) {
+			i.differentiate();
+		}
+		return this;
+	}
+	
+	/**
+	 *
+	 * Integrates this polynomial
+	 *
+	 * @return p Polinom
+	 * @see Polinom
+	 */
+	protected Polinom integratePolinom() {
+		Polinom res = new Polinom();
+		for (Monom i: this.monoms) {
+			res.addMonom(i.integrate());
+		}
+		return res;
+	}
 
 }

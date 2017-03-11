@@ -4,7 +4,7 @@
  * The polinom tester class
  * 
  * @author Nagy Lilla
- * @version 11 Mar 2017
+ * @version 12 Mar 2017
  */
 
 package polinom;
@@ -104,7 +104,7 @@ public class PolinomTest {
 	
 	/**
     *
-    * Tests the case of multiplying two polinoms
+    * Tests the case of dividing two polinoms
     *
     * @see PolinomTest
     */
@@ -128,6 +128,44 @@ public class PolinomTest {
 		assertEquals("r1", 8.0, result.get(1).getMonoms().get(1).getCoeff());
 		assertEquals("r1", 0, result.get(1).getMonoms().get(1).getGrad());
 	}
+	
+	/**
+    *
+    * Tests the case of differentiating a polynomial
+    *
+    * @see PolinomTest
+    */
+	@Test
+	public void testPolinomDifferentiate() {
+		Polinom polinom = new Polinom();
+		polinom.addMonom(new MonomInt(3, 3));
+		polinom.addMonom(new MonomInt(3, 1));
+		polinom.addMonom(new MonomInt(2, 0));
+		Polinom result = polinom.differentiatePolinom();
+		assertEquals("0", 9, result.getMonoms().get(0).getCoeff());
+		assertEquals("0", 2, result.getMonoms().get(0).getGrad());
+		assertEquals("1", 3, result.getMonoms().get(1).getCoeff());
+		assertEquals("1", 0, result.getMonoms().get(1).getGrad());
+	}
 
-
+	/**
+    *
+    * Tests the case of integrating a polynomial
+    *
+    * @see PolinomTest
+    */
+	@Test
+	public void testPolinomIntegrate() {
+		Polinom polinom = new Polinom();
+		polinom.addMonom(new MonomInt(3, 3));
+		polinom.addMonom(new MonomInt(2, 1));
+		polinom.addMonom(new MonomInt(2, 0));
+		Polinom result = polinom.integratePolinom();
+		assertEquals("0", 0.75, result.getMonoms().get(0).getCoeff());
+		assertEquals("0", 4, result.getMonoms().get(0).getGrad());
+		assertEquals("1", 1.0, result.getMonoms().get(1).getCoeff());
+		assertEquals("1", 2, result.getMonoms().get(1).getGrad());
+		assertEquals("2", 2.0, result.getMonoms().get(2).getCoeff());
+		assertEquals("2", 1, result.getMonoms().get(2).getGrad());
+	}
 }
