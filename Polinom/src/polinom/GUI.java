@@ -10,70 +10,55 @@ package polinom;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 import java.util.List;
 
 import javax.swing.*;
 
 
-public class GUI {
+public class GUI extends JFrame {
 
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Polynomials");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(new Dimension(480, 320));
-		frame.setResizable(false);
-		JPanel panelMain = new JPanel();
-		panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.Y_AXIS));
-		frame.setContentPane(panelMain);
-		JPanel panelPol1 = new JPanel();
-		panelPol1.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JPanel panelMon1 = new JPanel();
-		panelMon1.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JPanel panelPol2 = new JPanel();
-		panelPol2.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JPanel panelMon2 = new JPanel();
-		panelMon2.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JPanel panelButtons = new JPanel();
-		panelButtons.setLayout(new GridLayout(2, 4));
-		JPanel panelResult = new JPanel();
-		panelResult.setLayout(new FlowLayout(FlowLayout.LEFT));
-		JPanel panelReset = new JPanel();
-		panelReset.setLayout(new FlowLayout());
-		panelMain.add(panelPol1);
-		panelMain.add(panelMon1);
-		panelMain.add(panelPol2);
-		panelMain.add(panelMon2);
-		panelMain.add(panelButtons);
-		panelMain.add(panelResult);
-		panelMain.add(panelReset);
+	public GUI() {
+		initUI();
+	}
+
+	private void initUI() {
+		setTitle("Polynomials");
+		setSize(480, 320);
+		setResizable(false);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		List<JComponent> toPanelPol1 = new ArrayList<>();
+		List<JComponent> toPanelMon1 = new ArrayList<>();
 		JLabel polinom1Text = new JLabel("polinom 1: ");
 		JLabel polinom1Result = new JLabel();
-		panelPol1.add(polinom1Text);
-		panelPol1.add(polinom1Result);
 		JLabel monom1TextCoeff = new JLabel("monom1 coeff: ");
 		JTextField coeff1 = new JTextField(5);
 		JLabel monom1TextGrad = new JLabel("grad: ");
 		JTextField grad1 = new JTextField(5);
 		JButton add1 = new JButton("Add");
-		panelMon1.add(monom1TextCoeff);
-		panelMon1.add(coeff1);
-		panelMon1.add(monom1TextGrad);
-		panelMon1.add(grad1);
-		panelMon1.add(add1);
+		toPanelPol1.add(polinom1Text);
+		toPanelPol1.add(polinom1Result);
+		toPanelMon1.add(monom1TextCoeff);
+		toPanelMon1.add(coeff1);
+		toPanelMon1.add(monom1TextGrad);
+		toPanelMon1.add(grad1);
+		toPanelMon1.add(add1);
 		JLabel polinom2Text = new JLabel("polinom 2: ");
 		JLabel polinom2Result = new JLabel();
-		panelPol2.add(polinom2Text);
-		panelPol2.add(polinom2Result);
+		List<JComponent> toPanelPol2 = new ArrayList<>();
+		toPanelPol2.add(polinom2Text);
+		toPanelPol2.add(polinom2Result);
 		JLabel monom2TextCoeff = new JLabel("monom2 coeff: ");
 		JTextField coeff2 = new JTextField(5);
 		JLabel monom2TextGrad = new JLabel("grad: ");
 		JTextField grad2 = new JTextField(5);
 		JButton add2 = new JButton("Add");
-		panelMon2.add(monom2TextCoeff);
-		panelMon2.add(coeff2);
-		panelMon2.add(monom2TextGrad);
-		panelMon2.add(grad2);
-		panelMon2.add(add2);
+		List<JComponent> toPanelMon2 = new ArrayList<>();
+		toPanelMon2.add(monom2TextCoeff);
+		toPanelMon2.add(coeff2);
+		toPanelMon2.add(monom2TextGrad);
+		toPanelMon2.add(grad2);
+		toPanelMon2.add(add2);
 		JButton addPol = new JButton("Add");
 		JButton subtractPol = new JButton("Subtract");
 		JButton multiplyPol = new JButton("Multiply");
@@ -82,27 +67,39 @@ public class GUI {
 		JButton diffPol2 = new JButton("Diff 2");
 		JButton intPol1 = new JButton("Integrate 1");
 		JButton intPol2 = new JButton("Integrate 2");
-		panelButtons.add(addPol);
-		panelButtons.add(subtractPol);
-		panelButtons.add(multiplyPol);
-		panelButtons.add(dividePol);
-		panelButtons.add(diffPol1);
-		panelButtons.add(diffPol2);
-		panelButtons.add(intPol1);
-		panelButtons.add(intPol2);
+		List<JComponent> toPanelButtons = new ArrayList<>();
+		toPanelButtons.add(addPol);
+		toPanelButtons.add(subtractPol);
+		toPanelButtons.add(multiplyPol);
+		toPanelButtons.add(dividePol);
+		toPanelButtons.add(diffPol1);
+		toPanelButtons.add(diffPol2);
+		toPanelButtons.add(intPol1);
+		toPanelButtons.add(intPol2);
 		JLabel resultText = new JLabel("result: ");
 		JLabel result = new JLabel();
 		JLabel restText = new JLabel("rest: ");
 		JLabel rest = new JLabel();
-		panelResult.add(resultText);
-		panelResult.add(result);
-		panelResult.add(restText);
-		panelResult.add(rest);
+		List<JComponent> toPanelResult = new ArrayList<>();
+		toPanelResult.add(resultText);
+		toPanelResult.add(result);
+		toPanelResult.add(restText);
+		toPanelResult.add(rest);
 		JButton reset = new JButton("Reset");
-		panelReset.add(reset);
+		List<JComponent> toPanelReset = new ArrayList<>();
+		toPanelReset.add(reset);
+		List<List<JComponent>> listOfComponents = new ArrayList<>();
+		listOfComponents.add(toPanelPol1);
+		listOfComponents.add(toPanelMon1);
+		listOfComponents.add(toPanelPol2);
+		listOfComponents.add(toPanelMon2);
+		listOfComponents.add(toPanelButtons);
+		listOfComponents.add(toPanelResult);
+		listOfComponents.add(toPanelReset);
+		
 		Polinom polinom1 = new Polinom();
 		Polinom polinom2 = new Polinom();
-		
+
 
 		class Action implements ActionListener {
 
@@ -130,16 +127,9 @@ public class GUI {
 					polinomRes = polinom1.addPolinom(polinom2);			
 					result.setText(polinomRes.printPolinom(polinomRes));
 					addPol.setBackground(Color.cyan);
-					add1.setEnabled(false);
-					add2.setEnabled(false);
-					addPol.setEnabled(false);
-					subtractPol.setEnabled(false);
-					multiplyPol.setEnabled(false);
-					dividePol.setEnabled(false);
-					diffPol1.setEnabled(false);
-					diffPol2.setEnabled(false);
-					intPol1.setEnabled(false);
-					intPol2.setEnabled(false);
+					for (JComponent i : toPanelButtons) {
+						i.setEnabled(false);
+					}
 				}
 				if (e.getSource() == subtractPol) {
 					Polinom polinomRes = new Polinom();
@@ -147,16 +137,9 @@ public class GUI {
 					polinomRes = polinom1.subtractPolinom(polinom2);			
 					result.setText(polinomRes.printPolinom(polinomRes));
 					subtractPol.setBackground(Color.cyan);
-					add1.setEnabled(false);
-					add2.setEnabled(false);
-					addPol.setEnabled(false);
-					subtractPol.setEnabled(false);
-					multiplyPol.setEnabled(false);
-					dividePol.setEnabled(false);
-					diffPol1.setEnabled(false);
-					diffPol2.setEnabled(false);
-					intPol1.setEnabled(false);
-					intPol2.setEnabled(false);
+					for (JComponent i : toPanelButtons) {
+						i.setEnabled(false);
+					}
 				}
 				if (e.getSource() == multiplyPol) {
 					Polinom polinomRes = new Polinom();
@@ -164,16 +147,9 @@ public class GUI {
 					polinomRes = polinom1.multiplyPolinom(polinom2);			
 					result.setText(polinomRes.printPolinom(polinomRes));
 					multiplyPol.setBackground(Color.cyan);
-					add1.setEnabled(false);
-					add2.setEnabled(false);
-					addPol.setEnabled(false);
-					subtractPol.setEnabled(false);
-					multiplyPol.setEnabled(false);
-					dividePol.setEnabled(false);
-					diffPol1.setEnabled(false);
-					diffPol2.setEnabled(false);
-					intPol1.setEnabled(false);
-					intPol2.setEnabled(false);
+					for (JComponent i : toPanelButtons) {
+						i.setEnabled(false);
+					}
 				}
 				if (e.getSource() == dividePol) {
 					Polinom polinomRes = new Polinom();
@@ -186,16 +162,9 @@ public class GUI {
 					result.setText(polinomRes.printPolinom(polinomRes));
 					rest.setText(polinomRest.printPolinom(polinomRest));
 					dividePol.setBackground(Color.cyan);
-					add1.setEnabled(false);
-					add2.setEnabled(false);
-					addPol.setEnabled(false);
-					subtractPol.setEnabled(false);
-					multiplyPol.setEnabled(false);
-					dividePol.setEnabled(false);
-					diffPol1.setEnabled(false);
-					diffPol2.setEnabled(false);
-					intPol1.setEnabled(false);
-					intPol2.setEnabled(false);
+					for (JComponent i : toPanelButtons) {
+						i.setEnabled(false);
+					}
 				}
 				if (e.getSource() == diffPol1) {
 					Polinom polinomRes = new Polinom();
@@ -203,16 +172,9 @@ public class GUI {
 					polinomRes = polinom1.differentiatePolinom();			
 					result.setText(polinomRes.printPolinom(polinomRes));
 					diffPol1.setBackground(Color.cyan);
-					add1.setEnabled(false);
-					add2.setEnabled(false);
-					addPol.setEnabled(false);
-					subtractPol.setEnabled(false);
-					multiplyPol.setEnabled(false);
-					dividePol.setEnabled(false);
-					diffPol1.setEnabled(false);
-					diffPol2.setEnabled(false);
-					intPol1.setEnabled(false);
-					intPol2.setEnabled(false);
+					for (JComponent i : toPanelButtons) {
+						i.setEnabled(false);
+					}
 				}
 				if (e.getSource() == diffPol2) {
 					Polinom polinomRes = new Polinom();
@@ -220,16 +182,9 @@ public class GUI {
 					polinomRes = polinom2.differentiatePolinom();			
 					result.setText(polinomRes.printPolinom(polinomRes));
 					diffPol2.setBackground(Color.cyan);
-					add1.setEnabled(false);
-					add2.setEnabled(false);
-					addPol.setEnabled(false);
-					subtractPol.setEnabled(false);
-					multiplyPol.setEnabled(false);
-					dividePol.setEnabled(false);
-					diffPol1.setEnabled(false);
-					diffPol2.setEnabled(false);
-					intPol1.setEnabled(false);
-					intPol2.setEnabled(false);
+					for (JComponent i : toPanelButtons) {
+						i.setEnabled(false);
+					}
 				}
 				if (e.getSource() == intPol1) {
 					Polinom polinomRes = new Polinom();
@@ -237,16 +192,9 @@ public class GUI {
 					polinomRes = polinom1.integratePolinom();			
 					result.setText(polinomRes.printPolinom(polinomRes));
 					intPol1.setBackground(Color.cyan);
-					add1.setEnabled(false);
-					add2.setEnabled(false);
-					addPol.setEnabled(false);
-					subtractPol.setEnabled(false);
-					multiplyPol.setEnabled(false);
-					dividePol.setEnabled(false);
-					diffPol1.setEnabled(false);
-					diffPol2.setEnabled(false);
-					intPol1.setEnabled(false);
-					intPol2.setEnabled(false);
+					for (JComponent i : toPanelButtons) {
+						i.setEnabled(false);
+					}
 				}
 				if (e.getSource() == intPol2) {
 					Polinom polinomRes = new Polinom();
@@ -254,16 +202,9 @@ public class GUI {
 					polinomRes = polinom2.integratePolinom();			
 					result.setText(polinomRes.printPolinom(polinomRes));
 					intPol2.setBackground(Color.cyan);
-					add1.setEnabled(false);
-					add2.setEnabled(false);
-					addPol.setEnabled(false);
-					subtractPol.setEnabled(false);
-					multiplyPol.setEnabled(false);
-					dividePol.setEnabled(false);
-					diffPol1.setEnabled(false);
-					diffPol2.setEnabled(false);
-					intPol1.setEnabled(false);
-					intPol2.setEnabled(false);
+					for (JComponent i : toPanelButtons) {
+						i.setEnabled(false);
+					}
 				}
 				if (e.getSource() == reset) {
 					polinom1Result.setText(null);
@@ -275,27 +216,14 @@ public class GUI {
 					coeff2.setText(null);
 					grad2.setText(null);
 					result.setText(null);
-					add1.setEnabled(true);
-					add2.setEnabled(true);
-					addPol.setEnabled(true);
-					subtractPol.setEnabled(true);
-					multiplyPol.setEnabled(true);
-					dividePol.setEnabled(true);
-					diffPol1.setEnabled(true);
-					diffPol2.setEnabled(true);
-					intPol1.setEnabled(true);
-					intPol2.setEnabled(true);
-					addPol.setBackground(null);
-					subtractPol.setBackground(null);
-					multiplyPol.setBackground(null);
-					dividePol.setBackground(null);
-					diffPol1.setBackground(null);
-					diffPol2.setBackground(null);
-					intPol1.setBackground(null);
-					intPol2.setBackground(null);
+					rest.setText(null);
+					resultText.setText("result: ");
+					for (JComponent i : toPanelButtons) {
+						i.setEnabled(true);
+						i.setBackground(null);
+					}
 				}
 			}
-
 		}
 		Action action = new Action();
 		add1.addActionListener(action);
@@ -309,8 +237,54 @@ public class GUI {
 		intPol1.addActionListener(action);
 		intPol2.addActionListener(action);
 		reset.addActionListener(action);
-		frame.setVisible(true);
-
+		createLayout(listOfComponents);
+		
 	}
 
+	private void createLayout(List<List<JComponent>> listOfComponents) {
+		JPanel panelMain = 	(JPanel) getContentPane();
+		JPanel panelPol1 = new JPanel();
+		panelPol1.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JPanel panelMon1 = new JPanel();
+		panelMon1.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JPanel panelPol2 = new JPanel();
+		panelPol2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JPanel panelMon2 = new JPanel();
+		panelMon2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JPanel panelButtons = new JPanel();
+		panelButtons.setLayout(new GridLayout(2, 4));
+		JPanel panelResult = new JPanel();
+		panelResult.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JPanel panelReset = new JPanel();
+		List<JPanel> panels = new ArrayList<>();
+		panelReset.setLayout(new FlowLayout());
+		panels.add(panelPol1);
+		panels.add(panelMon1);
+		panels.add(panelPol2);
+		panels.add(panelMon2);
+		panels.add(panelButtons);
+		panels.add(panelResult);
+		panels.add(panelReset);
+		for (JPanel p: panels) {
+			panelMain.add(p);
+		}
+		int it = 0;
+		for (List<JComponent> i : listOfComponents) {
+			for (JComponent j: i) {
+				panels.get(it).add(j);
+			}
+			it++;
+		}
+	}
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(() -> {
+			GUI gui = new GUI();
+			gui.setVisible(true);
+			JPanel panelMain = new JPanel();
+			panelMain.setLayout(new BoxLayout(panelMain, BoxLayout.Y_AXIS));
+			gui.setContentPane(panelMain);
+			gui.setVisible(true);
+		});
+	}
 }
