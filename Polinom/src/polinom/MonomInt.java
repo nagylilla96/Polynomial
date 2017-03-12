@@ -177,7 +177,7 @@ public class MonomInt extends Monom implements Comparable{
 			return false;
 		}
 		MonomInt monomInt = (MonomInt) obj;
-		return monomInt.getCoeff().equals(coeff) && monomInt.getGrad().equals(grad);
+		return monomInt.getGrad().equals(grad);
 	}
 
 	/**
@@ -213,7 +213,7 @@ public class MonomInt extends Monom implements Comparable{
     * @see MonomReal
     */
 	@Override
-	public void invertCoeff() {
+	protected void invertCoeff() {
 		this.coeff = - this.coeff;
 		
 	}

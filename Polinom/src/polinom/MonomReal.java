@@ -170,7 +170,7 @@ public class MonomReal extends Monom implements Comparable{
 			return false;
 		}
 		MonomReal monomReal = (MonomReal) obj;
-		return monomReal.getCoeff().equals(coeff) && monomReal.getGrad().equals(grad);
+		return monomReal.getGrad().equals(grad);
 	}
 	
 	/**
@@ -206,7 +206,7 @@ public class MonomReal extends Monom implements Comparable{
     * @see MonomReal
     */
 	@Override
-	public void invertCoeff() {
+	protected void invertCoeff() {
 		this.coeff = -this.coeff;
 		
 	}

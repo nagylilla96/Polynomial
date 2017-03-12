@@ -1,6 +1,7 @@
 /**
  * PolinomTestRunneer class
  * The PolinomTest runner class
+ * Runs all the tests found in the MonomTest and PolinomTest classes
  *
  * @author Nagy Lilla
  * @version 10 Mar 2017

@@ -20,6 +20,8 @@ abstract class Monom {
 	public abstract void setGrad(Object grad);
 	public abstract Object getCoeff();
 	public abstract void setCoeff(Object coeff);
-	public abstract void invertCoeff();
+	protected abstract void invertCoeff();
 	public abstract int compareTo(Object o);
+	public abstract boolean equals(Object obj);
+	public abstract int hashCode();
 }
