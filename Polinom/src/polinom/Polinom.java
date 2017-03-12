@@ -42,7 +42,7 @@ public class Polinom{
 				return this;
 			}
 		}
-		this.monoms.add(m);
+		this.getMonoms().add(m);	
 		this.monoms.sort((s1, s2) -> -Integer.compare((int) s1.getGrad(), (int) s2.getGrad()));
 		return this;
 	}
@@ -75,12 +75,12 @@ public class Polinom{
 	 *
 	 * @see Polinom
 	 */
-	protected void invertMonoms() {
+	private void invertMonoms() {
 		for (Monom i: this.monoms) {
 			i.invertCoeff();
 		}
 	}
-	
+
 	/**
 	 *
 	 * Copies the elements of one polinom into another polinom
@@ -89,14 +89,14 @@ public class Polinom{
 	 * @return Polinom
 	 * @see Polinom
 	 */
-	protected Polinom copyPolinom(Polinom p) {
+	private Polinom copyPolinom(Polinom p) {
 		Polinom newPolinom = new Polinom();
 		for (Monom i: p.getMonoms()) {
 			newPolinom.addMonom(i);
 		}
 		return newPolinom;
 	}
-	
+
 	/**
 	 *
 	 * Prints the polynomial
@@ -104,13 +104,30 @@ public class Polinom{
 	 * @param p of type Polinom
 	 * @see Polinom
 	 */
-	protected void printPolinom(Polinom p) {
+	protected String printPolinom(Polinom p) {
+		String result = new String();
 		for (Monom i: p.getMonoms()) {
-			System.out.print(i.getCoeff() + "X^" + i.getGrad() + " ");
+			if (i.getClass().equals(MonomInt.class)){
+				if ((Integer) i.getCoeff() > 0) {
+					result += "+";
+				} else {
+					if ((Integer) i.getCoeff() == 0) {
+						continue;
+					}
+				}
+			} else {
+				if ((Double) i.getCoeff() > 0) {
+					result += "+";
+				} else {
+					if ((Double) i.getCoeff() == 0) {
+						continue;
+					}
+				}
+			}
+			result += i.getCoeff() + "X^" + i.getGrad() + " ";
 		}
-		System.out.println();
+		return result;
 	}
-
 
 	/**
 	 *
@@ -138,16 +155,13 @@ public class Polinom{
 			j = p.getMonoms().iterator();
 			if (j.hasNext()) {
 				mon = j.next();
-			}
-			else return this;
-		}
-		else {
+			} else return this;
+		} else {
 			monomList = p.getMonoms();
 			j = this.monoms.iterator();
 			if (j.hasNext()) {
 				mon = j.next();
-			}
-			else return p;
+			} else return p;
 		}
 		boolean add = true;
 		for (Monom i: monomList) {
@@ -159,20 +173,14 @@ public class Polinom{
 				res.addMonom(i.add(mon));
 				if (j.hasNext()) {
 					mon = j.next();
-				}
-				else {
+				} else {
 					add = false;
 				}
-			}
-			else {
+			} else {
 				res.addMonom(i);
-
 			}
 		}
-		if (add) {
-			res.addMonom(mon);
-		}
-		
+		if (add) res.addMonom(mon);
 		while (j.hasNext()) {
 			res.addMonom(j.next());
 		}
@@ -215,7 +223,7 @@ public class Polinom{
 		}
 		return rez;
 	}
-	
+
 	/**
 	 *
 	 * Divides two polynomials 
@@ -246,7 +254,7 @@ public class Polinom{
 		polinomList.add(rest);
 		return polinomList;
 	}
-	
+
 	/**
 	 *
 	 * Differentiates this polynomial
@@ -260,7 +268,7 @@ public class Polinom{
 		}
 		return this;
 	}
-	
+
 	/**
 	 *
 	 * Integrates this polynomial

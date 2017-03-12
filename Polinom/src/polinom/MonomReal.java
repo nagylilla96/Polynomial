@@ -8,6 +8,8 @@
 
 package polinom;
 
+import java.util.Objects;
+
 public class MonomReal extends Monom implements Comparable{
 	Double coeff;
 	Integer grad;	
@@ -151,6 +153,36 @@ public class MonomReal extends Monom implements Comparable{
 		++this.grad;
 		MonomReal mr = new MonomReal(this.coeff / (Double) (this.grad).doubleValue(), this.grad);
 		return mr;
+	}
+	
+	/**
+    *
+    * The method overrides the equals method
+    *
+    * @param obj Object
+    * @return boolean
+    * @see MonomReal
+    */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) return true;
+		if (!(obj instanceof MonomReal)) {
+			return false;
+		}
+		MonomReal monomReal = (MonomReal) obj;
+		return monomReal.getCoeff().equals(coeff) && monomReal.getGrad().equals(grad);
+	}
+	
+	/**
+    *
+    * The method overrides the hashCode method
+    *
+    * @return int
+    * @see MonomReal
+    */
+	@Override
+	public int hashCode() {
+		return Objects.hash(coeff, grad);
 	}
 
 	/**

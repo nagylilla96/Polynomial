@@ -3,10 +3,12 @@
  * The class is for monoms with integer coefficients
  *
  * @author Nagy Lilla
- * @version 11 Mar 2017
+ * @version 12 Mar 2017
  */
 
 package polinom;
+
+import java.util.Objects;
 
 public class MonomInt extends Monom implements Comparable{
 	Integer coeff;
@@ -160,6 +162,36 @@ public class MonomInt extends Monom implements Comparable{
 		return mr;
 	}
 	
+	/**
+    *
+    * The method overrides the equals method
+    *
+    * @param obj Object
+    * @return boolean
+    * @see MonomInt
+    */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) return true;
+		if (!(obj instanceof MonomInt)) {
+			return false;
+		}
+		MonomInt monomInt = (MonomInt) obj;
+		return monomInt.getCoeff().equals(coeff) && monomInt.getGrad().equals(grad);
+	}
+
+	/**
+    *
+    * The method overrides the hashCode method
+    *
+    * @return int
+    * @see MonomInt
+    */
+	@Override
+	public int hashCode() {
+		return Objects.hash(coeff, grad);
+	}
+
 	/**
     *
     * The method compares the monoms based on their grads
